@@ -20,7 +20,11 @@ mongoose
     // Run your code here, after you have insured that the connection was made
     return Recipe.create({
       title: "Rissoto a la Jose Luis",
-      cuisine: "Italiana"
+      level: "UltraPro Chef",
+      cuisine: "Italiana",
+      ingredients: [ "salt to taste", "asparragus", "mushrooms", "vino fino", "parmesan cheese", "rice", "leeks", "love + passion"],
+      dishType: "main_course",
+      duration: 25
     })
   })
   .then((response) => {
@@ -42,28 +46,26 @@ mongoose
   .then((response) => {
 
     return Recipe.deleteOne({ title: "Carrot Cake" })
-    console.log("Carrot Cake Removida")
   })
   .then((response) => {
     console.log("Carrot Cake Removida")
   })
-
-
-
-
   .then((response) => {
 
     mongoose.connection.close()
 
       .then((response) => {
-        console.log("Closed DB connection")
+        console.log("Closed DB connection", mongoose.connection.readyState)
       })
       .catch((error) => {
         console.log("Closed DB connection failure")
       })
 
   })
-
   .catch(error => {
     console.error('Error connecting to the database', error);
   });
+
+
+
+
