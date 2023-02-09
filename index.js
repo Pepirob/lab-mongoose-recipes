@@ -18,28 +18,26 @@ mongoose
   })
   .then((response) => {
     // Run your code here, after you have insured that the connection was made
-    
     return Recipe.create({
-         title: "Rissoto a la Jose Luis",
-         cuisine: "Italiana"
-
+      title: "Rissoto a la Jose Luis",
+      cuisine: "Italiana"
     })
-
   })
-  
-   .then((response) => {
+  .then((response) => {
     return Recipe.insertMany(data)
    })
-
-   .then((response) => {
+  .then((response) => {
     return Recipe.find()
     .select({title:1})
   })
-
-  
-
   .then((response) => {
       console.log(response)
+  })
+  .then((response) =>{
+    return Recipe.findOneAndUpdate({title: "Rigatoni alla Genovese"}, {duration: 100}, {new:true})
+  })
+  .then((response) => {
+    console.log("success message!", response)
   })
   .catch(error => {
     console.error('Error connecting to the database', error);
